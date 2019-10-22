@@ -1,0 +1,7 @@
+binpkg/
+distfiles/
+gentoo/
+logs/
+stage3-amd64-hardened+nomultilib-*.tar
+stage3-amd64-hardened+nomultilib-*.tar.xz
+stage3-amd64-hardened+nomultilib-*.tar.xz.DIGESTS.asc
