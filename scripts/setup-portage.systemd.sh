@@ -9,6 +9,7 @@ emerge_optarray=(
     --tree --unordered-display
     --verbose --verbose-conflicts --verbose-slot-rebuilds=y
     --quiet-build
+    --nospinner
 
     --newrepo
     --newuse

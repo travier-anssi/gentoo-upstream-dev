@@ -30,7 +30,7 @@ emerge app-arch/lz4
 /mnt/scripts/setup-portage.sh
 
 # Install various tools
-emerge app-portage/gentoolkit app-portage/repoman dev-vcs/git
+emerge app-portage/gentoolkit app-portage/repoman dev-vcs/git app-editors/vim
 
 # Update the packages according to profile and overlays (this will install also
 # the packages from @sdk-world).
