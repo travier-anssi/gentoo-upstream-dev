@@ -7,8 +7,14 @@
 # Safety settings: do not remove!
 set -o errexit -o nounset -o pipefail
 
+if [[ "${#}" -eq 1 && "${1}" == 'systemd' ]]; then
+    echo "Setup with systemd *enabled*"
+else
+    echo "Setup with systemd *disabled*"
+fi
+
 # Setup Portage
-/mnt/scripts/setup-portage.sh
+/mnt/scripts/portage.sh "${@}"
 
 # Workaround for lz4 build
 portage_vars_to_delete=(
@@ -27,10 +33,18 @@ EOF
 emerge app-arch/lz4
 
 # Now reset portage setup:
-/mnt/scripts/setup-portage.sh
+/mnt/scripts/portage.sh "${@}"
 
 # Install various tools
 emerge app-portage/gentoolkit app-portage/repoman dev-vcs/git app-editors/vim
+
+if [[ "${#}" -eq 1 && "${1}" == 'systemd' ]]; then
+    # sys-fs/eudev and sys-apps/sysvinit are blockers for the packages to be
+    # installed next (ensure to get rid of them even in the @system package set):
+    emerge --rage-clean sys-apps/sysvinit sys-fs/eudev
+
+    emerge sys-apps/systemd virtual/udev sys-apps/pciutils
+fi
 
 # Update the packages according to profile and overlays (this will install also
 # the packages from @sdk-world).

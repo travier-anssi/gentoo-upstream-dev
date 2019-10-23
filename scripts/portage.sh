@@ -109,7 +109,12 @@ rm -rf /etc/portage/make.profile
 mkdir -p /etc/portage/make.profile
 cat <<EOF > /etc/portage/make.profile/parent
 gentoo:default/linux/amd64/17.0/no-multilib/hardened
+EOF
+
+if [[ "${#}" -eq 1 && "${1}" == 'systemd' ]]; then
+    cat <<EOF >> /etc/portage/make.profile/parent
 gentoo:targets/systemd
 EOF
+fi
 
 # vim: set ts=4 sts=4 sw=4 et ft=sh:
