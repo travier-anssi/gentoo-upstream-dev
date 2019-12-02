@@ -108,7 +108,7 @@ echo >> "${repoconf}"
 rm -rf /etc/portage/make.profile
 mkdir -p /etc/portage/make.profile
 cat <<EOF > /etc/portage/make.profile/parent
-gentoo:default/linux/amd64/17.0/no-multilib/hardened
+gentoo:default/linux/amd64/17.1/no-multilib/hardened
 EOF
 
 if [[ "${#}" -eq 1 && "${1}" == 'systemd' ]]; then
